@@ -23,6 +23,8 @@ public class RacingController {
         outputView.printInputCarNames();
         List<String> carInputs = inputView.inputCarNames();
         List<Car> cars = generateCars(carInputs);
+        outputView.printTryCount();
+        int racingCount = inputView.inputCount();
     }
 
     private List<Car> generateCars (List<String> carInputs) {
