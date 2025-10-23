@@ -18,7 +18,7 @@ public class RacingController {
 
     private void inputCarNames() {
         outputView.printInputCarNames();
-        inputView.inputCarName();
+        inputView.inputCarNames();
     }
 
 }
