@@ -20,9 +20,9 @@ class CarsTest {
         );
 
         // when
-        Cars cars = Cars.of(carsList);
+        Cars cars = Cars.from(carsList);
         // then
-        assertThat(cars).isEqualTo(Cars.of(carsList));
+        assertThat(cars).isEqualTo(Cars.from(carsList));
     }
 
     @DisplayName("자동차 이름이 중복됐을 경우 예외발생")
@@ -34,7 +34,7 @@ class CarsTest {
                 Car.from("pobi")
         );
         // when// then
-        assertThatThrownBy(()-> Cars.of(carList))
+        assertThatThrownBy(()-> Cars.from(carList))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
