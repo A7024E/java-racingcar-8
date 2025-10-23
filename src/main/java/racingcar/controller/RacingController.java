@@ -1,5 +1,8 @@
 package racingcar.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import racingcar.model.Car;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -18,7 +21,17 @@ public class RacingController {
 
     private void inputCarNames() {
         outputView.printInputCarNames();
-        inputView.inputCarNames();
+        List<String> carInputs = inputView.inputCarNames();
+        List<Car> cars = generateCars(carInputs);
     }
+
+    private List<Car> generateCars (List<String> carInputs) {
+        List<Car> cars = new ArrayList<>();
+        for (String name : carInputs) {
+            cars.add(Car.from(name));
+        }
+        return cars;
+    }
+
 
 }
