@@ -1,11 +1,15 @@
 package racingcar.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 public class Cars {
     private final List<Car> cars;
 
     private Cars(List<Car> cars) {
+        validateCars(cars);
         this.cars = cars;
     }
 
@@ -13,5 +17,27 @@ public class Cars {
         return new Cars(cars);
     }
 
+    private void validateCars(List<Car> cars) {
+        Set<Car> nonDuplicateCars = new HashSet<>(cars);
+        if(nonDuplicateCars.size() != cars.size()){
+            throw new IllegalArgumentException("자동차 이름은 중복이 될 수 없습니다");
+        }
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Cars cars1 = (Cars) o;
+        return Objects.equals(cars, cars1.cars);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(cars);
+    }
 }
