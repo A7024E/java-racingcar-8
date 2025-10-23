@@ -6,11 +6,18 @@ public class RacingCount {
     private final int count;
 
     private RacingCount(int count) {
+        validateRacingCount(count);
         this.count = count;
     }
 
     public static RacingCount from(int count) {
         return new RacingCount(count);
+    }
+
+    private void validateRacingCount(int count){
+        if(count <= 0){
+            throw new IllegalArgumentException("시도횟수는 최소 1 이상이여야 합니다");
+        }
     }
 
     @Override
