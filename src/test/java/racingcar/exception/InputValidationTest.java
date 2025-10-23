@@ -1,5 +1,6 @@
 package racingcar.exception;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,26 +14,26 @@ class InputValidationTest {
 
     private InputValidation inputValidation;
 
-    @BeforeEach
-    void setUp() {
-        inputValidation = new InputValidation();
-    }
-
-    @DisplayName("자동차 이름값을 입력하지 않은 경우 예외발생")
+    @DisplayName("자동차 이름값이 null 또는 빈 문자열이면 true를 반환")
     @ParameterizedTest
     @NullAndEmptySource
-    void inputCarNameNullorEmpty(String inputCarName) {
-        assertThatThrownBy(()->inputValidation.validateCarName(inputCarName))
-                .isInstanceOf(IllegalArgumentException.class);
+    void inputCarNameNullOrEmpty(String inputCarName) {
+        //given //when
+        boolean isNullOrEmpty = InputValidation.isNullOrEmpty(inputCarName);
 
+        //Then
+        assertThat(isNullOrEmpty).isTrue();
     }
 
     @DisplayName("입력에 공백이 포함되어 있을 경우 예외발생")
     @ParameterizedTest
     @ValueSource(strings = {" ", "pobi ", "pobi,woni, jun"})
     void inputCarNameBlank(String inputCarName) {
-        assertThatThrownBy(()->inputValidation.validateCarNameBlank(inputCarName))
-                .isInstanceOf(IllegalArgumentException.class);
+        //given //when
+        boolean isContainsBlank = InputValidation.isBlankContains(inputCarName);
+
+        //Then
+        assertThat(isContainsBlank).isTrue();
 
     }
 }
