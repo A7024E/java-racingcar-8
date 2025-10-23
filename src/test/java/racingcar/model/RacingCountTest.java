@@ -29,4 +29,19 @@ class RacingCountTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("경기 횟수를 1회 차감한다")
+    @Test
+    void decreaseRacingCount() {
+        // given
+        int count = 1;
+        RacingCount racingCount = RacingCount.from(count);
+
+        // when
+        racingCount.decrease();
+
+        // then
+        assertThat(racingCount.getCount()).isEqualTo(--count);
+
+    }
+
 }
