@@ -44,4 +44,32 @@ class RacingCountTest {
 
     }
 
+    @DisplayName("경기 횟수가 0이되면 경기가 끝난다")
+    @Test
+    void endRacingGame() {
+        // given
+        int count = 1;
+        RacingCount racingCount = RacingCount.from(count);
+        racingCount.decrease();
+        // when
+        boolean racingEnd = racingCount.isEnd();
+
+        // then
+        assertThat(racingEnd).isEqualTo(true);
+    }
+
+    @DisplayName("경기 횟수가 0이 아니라면 false 를 반환한다")
+    @Test
+    void notEndRacingGame() {
+        // given
+        int count = 1;
+        RacingCount racingCount = RacingCount.from(count);
+        // when
+        boolean racingEnd = racingCount.isEnd();
+
+        // then
+        assertThat(racingEnd).isEqualTo(false);
+
+    }
+
 }
