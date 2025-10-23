@@ -18,7 +18,7 @@ public class InputView {
     public int inputCount() {
         String input = Console.readLine();
         validateRacingCountInput(input);
-        return Integer.parseInt(input);
+        return parseRacingCount(input);
     }
 
     private static void validateCarNameInput(String input) {
@@ -36,6 +36,14 @@ public class InputView {
         }
         if (InputValidation.isBlankContains(racingCount)) {
             throw new IllegalArgumentException("공백을 입력할 수 없습니다.");
+        }
+    }
+
+    private int parseRacingCount(String racingCount) {
+        try {
+            return Integer.parseInt(racingCount);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("시도 횟수는 1이상의 정수로 입력해야 합니다.");
         }
     }
 }
