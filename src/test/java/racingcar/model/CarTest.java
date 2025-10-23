@@ -1,6 +1,7 @@
 package racingcar.model;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
@@ -32,6 +33,17 @@ class CarTest {
 
         //then
         assertThat(car.getPosition()).isEqualTo(0);
+    }
+
+    @DisplayName("자동차의 이름이 5글자 초과시 예외처리")
+    @Test
+    void createCar_whenNameLengthExceedsFive_thenThrowException(){
+        //given
+        String carName = "woniwoni";
+
+        //when //then
+        assertThatThrownBy(()->Car.from(carName))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
 }
