@@ -1,14 +1,17 @@
 package racingcar.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import racingcar.exception.InputValidation;
+import racingcar.utils.Converter;
 
 public class InputView {
 
-    public String inputCarName() {
+    public List<String> inputCarNames() {
         String input = Console.readLine();
         validateInput(input);
-        return Console.readLine();
+        String[] inputs = input.split(",");
+        return Converter.generateCarNames(inputs);
     }
 
     private static void validateInput(String input) {
