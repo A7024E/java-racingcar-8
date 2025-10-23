@@ -8,6 +8,16 @@ public class InputValidation {
         }
     }
 
+    public static void validateCarNameBlank(String carName){
+        if(isBlankContains(carName)){
+            throw new IllegalArgumentException("공백이 포함할 수 없습니다");
+        }
+    }
+
+    private static boolean isBlankContains(String carName) {
+        return carName.contains(" ");
+    }
+
     private static boolean isCarNameNull(String carName) {
         return carName == null;
     }

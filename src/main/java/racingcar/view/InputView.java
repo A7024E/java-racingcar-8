@@ -8,6 +8,7 @@ public class InputView {
     public String inputCarName() {
         String input = Console.readLine();
         InputValidation.validateCarName(input);
+        InputValidation.validateCarNameBlank(input);
         return Console.readLine();
     }
 
