@@ -1,19 +1,37 @@
 package racingcar.model;
 
 import java.util.Objects;
+import racingcar.utils.RandomNumberStrategy;
 
 public class Car {
     private final String name;
-    private final int position;
+    private int position;
+    private final RandomNumberStrategy randomNumberStrategy;
 
-    private Car(String name) {
+    private Car(String name, RandomNumberStrategy randomNumberStrategy) {
         validateCar(name);
         this.name = name;
         this.position = 0;
+        this.randomNumberStrategy = randomNumberStrategy;
     }
 
-    public static Car from(String name) {
-        return new Car(name);
+    public static Car from(String name, RandomNumberStrategy randomNumberStrategy) {
+        return new Car(name, randomNumberStrategy);
+    }
+
+    public void move() {
+        int randomNumber = generateRandomNumber();
+        if (randomNumber >= 4) {
+            moveForward();
+        }
+    }
+
+    private void moveForward() {
+        position += 1;
+    }
+
+    private int generateRandomNumber() {
+        return randomNumberStrategy.generateRandomNumber();
     }
 
     public String getName() {
