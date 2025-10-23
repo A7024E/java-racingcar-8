@@ -3,7 +3,7 @@ package racingcar.model;
 import java.util.Objects;
 
 public class RacingCount {
-    private final int count;
+    private int count;
 
     private RacingCount(int count) {
         validateRacingCount(count);
@@ -14,8 +14,16 @@ public class RacingCount {
         return new RacingCount(count);
     }
 
-    private void validateRacingCount(int count){
-        if(count <= 0){
+    public void decrease() {
+        count -= 1;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    private void validateRacingCount(int count) {
+        if (count <= 0) {
             throw new IllegalArgumentException("시도횟수는 최소 1 이상이여야 합니다");
         }
     }
