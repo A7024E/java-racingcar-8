@@ -3,6 +3,7 @@ package racingcar.controller;
 import java.util.ArrayList;
 import java.util.List;
 import racingcar.model.Car;
+import racingcar.utils.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -30,7 +31,7 @@ public class RacingController {
     private List<Car> generateCars(List<String> carInputs) {
         List<Car> cars = new ArrayList<>();
         for (String name : carInputs) {
-            cars.add(Car.from(name));
+            cars.add(Car.from(name,new RandomNumberGenerator()));
         }
         return cars;
     }

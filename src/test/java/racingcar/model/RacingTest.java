@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.utils.RandomNumberGenerator;
 
 class RacingTest {
     @DisplayName("자동차 객체와 레이싱 카운트 객체 를 이용하여 경주생성 테스트")
@@ -13,9 +14,9 @@ class RacingTest {
     void createRacing() {
         // given
         Cars cars = Cars.from(List.of(
-                Car.from("pobi"),
-                Car.from("woni"),
-                Car.from("jun")
+                Car.from("pobi",new RandomNumberGenerator()),
+                Car.from("woni",new RandomNumberGenerator()),
+                Car.from("jun",new RandomNumberGenerator())
         ));
 
         RacingCount racingCount = RacingCount.from(1);
