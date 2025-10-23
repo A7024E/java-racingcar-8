@@ -1,5 +1,6 @@
 package racingcar.model;
 
+import java.security.PublicKey;
 import java.util.Objects;
 
 public class Racing {
@@ -11,6 +12,10 @@ public class Racing {
 
     public static Racing from(Cars cars) {
         return new Racing(cars);
+    }
+
+    public void raceOnce(){
+        cars.move();
     }
 
     @Override

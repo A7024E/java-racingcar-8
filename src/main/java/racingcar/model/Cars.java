@@ -24,6 +24,12 @@ public class Cars {
         }
     }
 
+    public void move(){
+        for (Car car : cars) {
+            car.move();
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
