@@ -1,6 +1,7 @@
 package racingcar.model;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
@@ -22,5 +23,18 @@ class CarsTest {
         Cars cars = Cars.of(carsList);
         // then
         assertThat(cars).isEqualTo(Cars.of(carsList));
+    }
+
+    @DisplayName("자동차 이름이 중복됐을 경우 예외발생")
+    @Test
+    void carsWithDuplicateNames() {
+        // given
+        List<Car> carList = List.of(
+                Car.from("pobi"),
+                Car.from("pobi")
+        );
+        // when// then
+        assertThatThrownBy(()-> Cars.of(carList))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
