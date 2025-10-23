@@ -27,7 +27,7 @@ public class RacingController {
         int racingCount = inputView.inputCount();
     }
 
-    private List<Car> generateCars (List<String> carInputs) {
+    private List<Car> generateCars(List<String> carInputs) {
         List<Car> cars = new ArrayList<>();
         for (String name : carInputs) {
             cars.add(Car.from(name));
