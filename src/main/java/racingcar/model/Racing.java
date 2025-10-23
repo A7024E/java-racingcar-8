@@ -9,7 +9,7 @@ public class Racing {
         this.cars = cars;
     }
 
-    public static Racing of(Cars cars) {
+    public static Racing from(Cars cars) {
         return new Racing(cars);
     }
 
