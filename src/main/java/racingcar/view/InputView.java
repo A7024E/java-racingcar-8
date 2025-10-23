@@ -20,8 +20,12 @@ public class InputView {
     }
 
     private static void validateInput(String input) {
-        InputValidation.validateCarName(input);
-        InputValidation.validateCarNameBlank(input);
+        if(InputValidation.isNullOrEmpty(input)){
+            throw new IllegalArgumentException("자동차 이름을 입력해야 합니다.");
+        }
+        if(InputValidation.isBlankContains(input)){
+            throw new IllegalArgumentException("공백을 입력할 수 없습니다.");
+        }
     }
 
 }
