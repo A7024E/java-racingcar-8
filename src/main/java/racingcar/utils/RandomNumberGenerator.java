@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class RandomNumberGenerator implements RandomNumberStrategy {
 
     @Override
-    public int generateRandomNumber() {
+    public int generateNumber() {
         return Randoms.pickNumberInRange(0,9);
     }
 }

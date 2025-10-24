@@ -46,7 +46,7 @@ public class Car {
     }
 
     private int generateRandomNumber() {
-        return randomNumberStrategy.generateRandomNumber();
+        return randomNumberStrategy.generateNumber();
     }
 
     public CarResultDto toCarResultDto() {
