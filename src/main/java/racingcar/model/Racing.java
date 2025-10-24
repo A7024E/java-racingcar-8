@@ -22,6 +22,14 @@ public class Racing {
         cars.carsMove();
     }
 
+    public boolean canRace() {
+        return racingCount.isEnd();
+    }
+
+    public void decrementRacingCount() {
+        racingCount.decrease();
+    }
+
     public List<CarResultDto> racingResult() {
         return cars.carStatusResult();
     }
