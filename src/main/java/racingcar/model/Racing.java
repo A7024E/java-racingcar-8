@@ -7,13 +7,15 @@ import racingcar.dto.CarResultDto;
 
 public class Racing {
     private final Cars cars;
+    private final RacingCount racingCount;
 
-    private Racing(Cars cars) {
+    public Racing(Cars cars, RacingCount racingCount) {
         this.cars = cars;
+        this.racingCount = racingCount;
     }
 
-    public static Racing from(Cars cars) {
-        return new Racing(cars);
+    public static Racing of(Cars cars,RacingCount racingCount) {
+        return new Racing(cars, racingCount);
     }
 
     public void raceOnce() {
@@ -28,20 +30,4 @@ public class Racing {
         return cars.findWinnersByMaxPosition();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Racing racing = (Racing) o;
-        return Objects.equals(cars, racing.cars);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(cars);
-    }
 }
