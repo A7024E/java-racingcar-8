@@ -3,6 +3,7 @@ package racingcar.model;
 import java.util.List;
 import java.util.Objects;
 import racingcar.dto.CarResultDto;
+import racingcar.exception.CarValidation;
 import racingcar.utils.RandomNumberStrategy;
 
 public class Car {
@@ -11,7 +12,7 @@ public class Car {
     private final RandomNumberStrategy randomNumberStrategy;
 
     private Car(String name, RandomNumberStrategy randomNumberStrategy) {
-        validateCar(name);
+        CarValidation.validate(name);
         this.name = name;
         this.position = 0;
         this.randomNumberStrategy = randomNumberStrategy;
@@ -58,12 +59,6 @@ public class Car {
 
     public int getPosition() {
         return position;
-    }
-
-    private void validateCar(String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException("자동차의 이름은 5글자를 넘을 수 없습니다");
-        }
     }
 
     @Override
