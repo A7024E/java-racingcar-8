@@ -16,12 +16,16 @@ public class Racing {
         return new Racing(cars);
     }
 
-    public void raceOnce(){
+    public void raceOnce() {
         cars.carsMove();
     }
 
-    public List<CarResultDto> racingResult(){
+    public List<CarResultDto> racingResult() {
         return cars.carStatusResult();
+    }
+
+    public List<String> findWinners() {
+        return cars.findWinnersByMaxPosition();
     }
 
     @Override
