@@ -21,7 +21,7 @@ public class Cars {
         return Cars.from(generateCars(cars));
     }
 
-    private static Cars from(List<Car> cars) {
+    protected static Cars from(List<Car> cars) {
         return new Cars(cars);
     }
 
