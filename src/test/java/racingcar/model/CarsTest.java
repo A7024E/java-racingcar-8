@@ -2,7 +2,6 @@ package racingcar.model;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -15,9 +14,9 @@ class CarsTest {
     void createCars() {
         // given
         List<Car> carsList = List.of(
-                Car.from("pobi", new RandomNumberGenerator()),
-                Car.from("woni", new RandomNumberGenerator()),
-                Car.from("jun", new RandomNumberGenerator())
+                Car.of("pobi", new RandomNumberGenerator()),
+                Car.of("woni", new RandomNumberGenerator()),
+                Car.of("jun", new RandomNumberGenerator())
         );
 
         // when
@@ -31,8 +30,8 @@ class CarsTest {
     void carsWithDuplicateNames() {
         // given
         List<Car> carList = List.of(
-                Car.from("pobi", new RandomNumberGenerator()),
-                Car.from("pobi", new RandomNumberGenerator())
+                Car.of("pobi", new RandomNumberGenerator()),
+                Car.of("pobi", new RandomNumberGenerator())
         );
         // when// then
         assertThatThrownBy(() -> Cars.from(carList))

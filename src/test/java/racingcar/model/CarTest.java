@@ -20,7 +20,7 @@ class CarTest {
         String carName = "pobi";
 
         //when
-        Car car = Car.from(carName,new RandomNumberGenerator());
+        Car car = Car.of(carName,new RandomNumberGenerator());
 
         //then
         assertThat(car.getName()).isEqualTo(carName);
@@ -32,7 +32,7 @@ class CarTest {
     void CarNameNullOrEmptyExcetion(String inputCarName) {
         //given
         //when //Then
-        assertThatThrownBy(() -> Car.from(inputCarName,new RandomNumberGenerator()))
+        assertThatThrownBy(() -> Car.of(inputCarName,new RandomNumberGenerator()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("자동차 이름을 입력해야 합니다.");
     }
@@ -42,17 +42,18 @@ class CarTest {
     @ValueSource(strings = {" ", "pobi ", "pobi,woni, jun"})
     void inputCarNameBlank(String inputCarName) {
         //when//Then
-        assertThatThrownBy(() -> Car.from(inputCarName,new RandomNumberGenerator()))
+        assertThatThrownBy(() -> Car.of(inputCarName,new RandomNumberGenerator()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("공백을 입력할 수 없습니다.");
 
     }
-
+    @DisplayName("입력에 공백이 포함되어 있을 경우 예외발생")
+    @Test
     void carNameNotFiveRange() {
         //given
         String carName = "pobipobi";
         //when //Then
-        assertThatThrownBy(() -> Car.from(carName,new RandomNumberGenerator()))
+        assertThatThrownBy(() -> Car.of(carName,new RandomNumberGenerator()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("자동차의 이름은 5글자를 넘을 수 없습니다");
     }
@@ -66,7 +67,7 @@ class CarTest {
         String carName = "woni";
 
         //when
-        Car car = Car.from(carName,new RandomNumberGenerator());
+        Car car = Car.of(carName,new RandomNumberGenerator());
 
         //then
         assertThat(car.getPosition()).isEqualTo(0);
@@ -79,7 +80,7 @@ class CarTest {
         String carName = "woniwoni";
 
         //when //then
-        assertThatThrownBy(()->Car.from(carName,new RandomNumberGenerator()))
+        assertThatThrownBy(()->Car.of(carName,new RandomNumberGenerator()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -88,7 +89,7 @@ class CarTest {
     void moveForward(){
         // given
         int randomNumber = 4;
-        Car car = Car.from("pobi",new StubRandomNumberGenerator(randomNumber));
+        Car car = Car.of("pobi",new StubRandomNumberGenerator(randomNumber));
         // when
         car.move();
         // then
@@ -100,7 +101,7 @@ class CarTest {
     void notMoveForward(){
         // given
         int randomNumber = 3;
-        Car car = Car.from("pobi",new StubRandomNumberGenerator(randomNumber));
+        Car car = Car.of("pobi",new StubRandomNumberGenerator(randomNumber));
         // when
         car.move();
         // then
