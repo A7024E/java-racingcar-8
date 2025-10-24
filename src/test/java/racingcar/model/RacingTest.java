@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 import java.util.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.dto.CarResultDto;
@@ -68,11 +69,24 @@ class RacingTest {
                 CarResultDto.of("woni",0),
                 CarResultDto.of("jun",0)
         );
-
-
-
-
     }
 
+    @DisplayName("우승자를 반환한다.")
+    @Test
+    void resultRacingWinner(){
+        // given
+        Car pobi = Car.from("pobi", new StubRandomNumberGenerator(4));
+        Car woni = Car.from("woni", new StubRandomNumberGenerator(3));
+        Car jun = Car.from("jun", new StubRandomNumberGenerator(1));
+
+        Cars cars = Cars.from(List.of(pobi,woni,jun));
+        Racing racing = Racing.from(cars);
+        racing.raceOnce();
+        // when
+        List<String> winner = racing.findWinners();
+        // then
+        assertThat(winner).containsExactly("pobi");
+
+    }
 
 }
