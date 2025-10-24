@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import racingcar.dto.CarResultDto;
+import racingcar.utils.RandomNumberGenerator;
 
 public class Cars {
     private final List<Car> cars;
@@ -16,7 +17,11 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars from(List<Car> cars) {
+    public static Cars fromCarNames(List<String> cars){
+        return Cars.from(generateCars(cars));
+    }
+
+    private static Cars from(List<Car> cars) {
         return new Cars(cars);
     }
 
@@ -25,6 +30,14 @@ public class Cars {
         if (nonDuplicateCars.size() != cars.size()) {
             throw new IllegalArgumentException("자동차 이름은 중복이 될 수 없습니다");
         }
+    }
+
+    private static List<Car> generateCars(List<String> carNames) {
+        List<Car> cars = new ArrayList<>();
+        for (String carName : carNames) {
+            cars.add(Car.of(carName, new RandomNumberGenerator()));
+        }
+        return cars;
     }
 
     public void carsMove() {
@@ -55,7 +68,6 @@ public class Cars {
         }
         return winners;
     }
-
 
     public List<CarResultDto> carStatusResult() {
         List<CarResultDto> racingResult = new ArrayList<>();

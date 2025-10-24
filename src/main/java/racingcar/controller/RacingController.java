@@ -21,8 +21,7 @@ public class RacingController {
     }
 
     public void start() {
-        List<String> inputs = inputCarNames();
-        Cars cars = generateCars(inputs);
+        Cars cars = readyCars();
 
         int count = inputRacingCount();
         RacingCount racingCount = RacingCount.from(count);
@@ -53,7 +52,7 @@ public class RacingController {
 
     private static List<String> oneRoundResult(Racing racing) {
         List<CarResultDto> carResultDtos = racing.racingResult();
-        List<String> racingResult= mapToResultStrings(carResultDtos);
+        List<String> racingResult = mapToResultStrings(carResultDtos);
         return racingResult;
     }
 
@@ -68,9 +67,10 @@ public class RacingController {
                 .toList();
     }
 
-    private List<String> inputCarNames() {
+    private Cars readyCars() {
         outputView.printInputCarNames();
-        return inputView.inputCarNames();
+        List<String> inputs = inputView.inputCarNames();
+        return Cars.fromCarNames(inputs);
     }
 
     private int inputRacingCount() {
@@ -78,13 +78,5 @@ public class RacingController {
         return inputView.inputCount();
     }
 
-
-    private Cars generateCars(List<String> carInputs) {
-        List<Car> cars = new ArrayList<>();
-        for (String name : carInputs) {
-            cars.add(Car.of(name, new RandomNumberGenerator()));
-        }
-        return Cars.from(cars);
-    }
 
 }
