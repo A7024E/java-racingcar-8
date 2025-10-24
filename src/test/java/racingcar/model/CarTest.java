@@ -5,6 +5,9 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.utils.StubRandomNumberGenerator;
 import racingcar.utils.RandomNumberGenerator;
 
@@ -22,6 +25,39 @@ class CarTest {
         //then
         assertThat(car.getName()).isEqualTo(carName);
     }
+
+    @DisplayName("자동차 이름값이 null 또는 빈 문자열이면 true를 반환")
+    @ParameterizedTest
+    @NullAndEmptySource
+    void CarNameNullOrEmptyExcetion(String inputCarName) {
+        //given
+        //when //Then
+        assertThatThrownBy(() -> Car.from(inputCarName,new RandomNumberGenerator()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("자동차 이름을 입력해야 합니다.");
+    }
+
+    @DisplayName("입력에 공백이 포함되어 있을 경우 예외발생")
+    @ParameterizedTest
+    @ValueSource(strings = {" ", "pobi ", "pobi,woni, jun"})
+    void inputCarNameBlank(String inputCarName) {
+        //when//Then
+        assertThatThrownBy(() -> Car.from(inputCarName,new RandomNumberGenerator()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("공백을 입력할 수 없습니다.");
+
+    }
+
+    void carNameNotFiveRange() {
+        //given
+        String carName = "pobipobi";
+        //when //Then
+        assertThatThrownBy(() -> Car.from(carName,new RandomNumberGenerator()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("자동차의 이름은 5글자를 넘을 수 없습니다");
+    }
+
+
 
     @DisplayName("Car 객체로 생성된 자동차의 초기 Position 값은 0이다")
     @Test
