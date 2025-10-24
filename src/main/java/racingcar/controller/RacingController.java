@@ -27,9 +27,9 @@ public class RacingController {
         int count = inputRacingCount();
         RacingCount racingCount = RacingCount.from(count);
 
-        Racing racing = Racing.from(cars);
+        Racing racing = Racing.of(cars, racingCount);
 
-        runRacingGame(racingCount, racing);
+        runRacingGame(racing);
         displayWinners(racing);
     }
 
@@ -38,28 +38,28 @@ public class RacingController {
         outputView.printWinner(winners);
     }
 
-    private void runRacingGame(RacingCount racingCount, Racing racing) {
+    private void runRacingGame(Racing racing) {
         outputView.printRacingResultMessage();
-        while (!isRacingAvailable(racingCount)) {
-            racingAround(racing, racingCount);
+        while (racing.canRace()) {
+            racingAround(racing);
         }
     }
 
-    private void racingAround(Racing racing, RacingCount racingCount) {
-        proceedOneRound(racing, racingCount);
+    private void racingAround(Racing racing) {
+        proceedOneRound(racing);
         List<String> racingResultDtos = oneRoundResult(racing);
         outputView.printRacingResult(racingResultDtos);
     }
 
     private static List<String> oneRoundResult(Racing racing) {
         List<CarResultDto> carResultDtos = racing.racingResult();
-        List<String> racingResultDtos = mapToResultStrings(carResultDtos);
-        return racingResultDtos;
+        List<String> racingResult= mapToResultStrings(carResultDtos);
+        return racingResult;
     }
 
-    private static void proceedOneRound(Racing racing, RacingCount racingCount) {
+    private static void proceedOneRound(Racing racing) {
         racing.raceOnce();
-        racingCount.decrease();
+        racing.decrementRacingCount();
     }
 
     private static List<String> mapToResultStrings(List<CarResultDto> carResultDtos) {
@@ -78,10 +78,6 @@ public class RacingController {
         return inputView.inputCount();
     }
 
-
-    private boolean isRacingAvailable(RacingCount racingCount) {
-        return racingCount.isEnd();
-    }
 
     private Cars generateCars(List<String> carInputs) {
         List<Car> cars = new ArrayList<>();
