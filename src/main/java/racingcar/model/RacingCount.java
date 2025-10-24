@@ -1,12 +1,13 @@
 package racingcar.model;
 
 import java.util.Objects;
+import racingcar.exception.RacingCountValidation;
 
 public class RacingCount {
     private int count;
 
     private RacingCount(int count) {
-        validateRacingCount(count);
+        RacingCountValidation.validate(count);
         this.count = count;
     }
 
@@ -24,12 +25,6 @@ public class RacingCount {
 
     public int getCount() {
         return count;
-    }
-
-    private void validateRacingCount(int count) {
-        if (count <= 0) {
-            throw new IllegalArgumentException("시도횟수는 최소 1 이상이여야 합니다");
-        }
     }
 
     @Override

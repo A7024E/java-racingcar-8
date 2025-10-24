@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.view.InputView;
 
 class RacingCountTest {
     @DisplayName("시도 횟수를 받아 RacingCount 객체를 생성한다.")
