@@ -26,7 +26,6 @@ public final class CarValidation {
         return carName.contains(" ");
     }
 
-
     private static boolean isCarNameRange(String input) {
         return input.length() > 5;
     }

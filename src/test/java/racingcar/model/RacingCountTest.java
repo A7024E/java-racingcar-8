@@ -70,7 +70,5 @@ class RacingCountTest {
 
         // then
         assertThat(racingEnd).isEqualTo(false);
-
     }
-
 }
