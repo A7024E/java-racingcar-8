@@ -34,11 +34,11 @@ public class Cars {
     }
 
     public List<String> findWinnersByMaxPosition() {
-        int maxPosition = getMaxPosition();
+        int maxPosition = findMaxPosition();
         return addWinners(maxPosition);
     }
 
-    private int getMaxPosition() {
+    private int findMaxPosition() {
         int maxPosition = 0;
         for (Car car : cars) {
             maxPosition = car.maxPosition(maxPosition);
