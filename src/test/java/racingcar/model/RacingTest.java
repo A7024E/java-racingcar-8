@@ -1,7 +1,6 @@
 package racingcar.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 import java.util.List;
@@ -87,6 +86,7 @@ class RacingTest {
         assertThat(winner).containsExactly("pobi", "woni");
 
     }
+
     private Cars generateCars() {
         Car pobi = Car.of("pobi", new StubRandomNumberGenerator(4));
         Car woni = Car.of("woni", new StubRandomNumberGenerator(3));
@@ -99,4 +99,5 @@ class RacingTest {
     private RacingCount insertRacingCount() {
         return RacingCount.from(1);
     }
+
 }

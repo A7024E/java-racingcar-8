@@ -6,35 +6,28 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.utils.RandomNumberGenerator;
 
 class CarsTest {
     @DisplayName("자동차 이름들을 받아 Cars 객체가 잘 생성되는지 확인한다")
     @Test
     void createCars() {
         // given
-        List<Car> carsList = List.of(
-                Car.of("pobi", new RandomNumberGenerator()),
-                Car.of("woni", new RandomNumberGenerator()),
-                Car.of("jun", new RandomNumberGenerator())
-        );
+        List<String> carsList = List.of("pobi","woni","jun");
 
         // when
-        Cars cars = Cars.from(carsList);
+        Cars cars = Cars.fromCarNames(carsList);
         // then
-        assertThat(cars).isEqualTo(Cars.from(carsList));
+        assertThat(cars).isEqualTo(Cars.fromCarNames(carsList));
     }
 
     @DisplayName("자동차 이름이 중복됐을 경우 예외발생")
     @Test
     void carsWithDuplicateNames() {
         // given
-        List<Car> carList = List.of(
-                Car.of("pobi", new RandomNumberGenerator()),
-                Car.of("pobi", new RandomNumberGenerator())
-        );
+        List<String> carsList = List.of("pobi","pobi","jun");
+
         // when// then
-        assertThatThrownBy(() -> Cars.from(carList))
+        assertThatThrownBy(() -> Cars.fromCarNames(carsList))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
