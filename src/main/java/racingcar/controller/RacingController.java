@@ -47,7 +47,8 @@ public class RacingController {
                     .toList();
             outputView.printRacingResult(racingResultDtos);
         }
-
+        List<String> winners = racing.findWinners();
+        outputView.printWinner(winners);
 
     }
 
