@@ -89,4 +89,21 @@ class RacingTest {
 
     }
 
+    @DisplayName("우승자들을 반환한다.")
+    @Test
+    void resultRacingWinners(){
+        // given
+        Car pobi = Car.from("pobi", new StubRandomNumberGenerator(4));
+        Car woni = Car.from("woni", new StubRandomNumberGenerator(4));
+        Car jun = Car.from("jun", new StubRandomNumberGenerator(1));
+
+        Cars cars = Cars.from(List.of(pobi,woni,jun));
+        Racing racing = Racing.from(cars);
+        racing.raceOnce();
+        // when
+        List<String> winner = racing.findWinners();
+        // then
+        assertThat(winner).containsExactly("pobi","woni");
+
+    }
 }
