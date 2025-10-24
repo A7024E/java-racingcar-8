@@ -1,6 +1,5 @@
 package racingcar.model;
 
-import java.security.PublicKey;
 import java.util.List;
 import java.util.Objects;
 import racingcar.dto.CarResultDto;

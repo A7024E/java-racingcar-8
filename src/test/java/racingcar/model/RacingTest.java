@@ -17,70 +17,53 @@ class RacingTest {
     @Test
     void createRacing() {
         // given
-        Cars cars = Cars.from(List.of(
-                Car.from("pobi",new RandomNumberGenerator()),
-                Car.from("woni",new RandomNumberGenerator()),
-                Car.from("jun",new RandomNumberGenerator())
-        ));
-
-        RacingCount racingCount = RacingCount.from(1);
+        Cars cars = generateCars();
+        RacingCount racingCount = insertRacingCount();
         // when
-        Racing racing = Racing.from(cars);
+        Racing racing = Racing.of(cars, racingCount);
         // then
-        assertThat(racing).isEqualTo(Racing.from(cars));
+        assertThat(racing).isEqualTo(Racing.of(cars, RacingCount.from(1)));
     }
 
     @DisplayName("경주가 잘 진행되는지 테스트한다")
     @Test
     void runRacing() {
         // given
-        Car pobi = Car.from("pobi", new StubRandomNumberGenerator(4));
-        Car woni = Car.from("woni", new StubRandomNumberGenerator(3));
-        Car jun = Car.from("jun", new StubRandomNumberGenerator(2));
-
-        Cars cars = Cars.from(List.of(pobi,woni,jun));
-        Racing racing = Racing.from(cars);
+        Cars cars = generateCars();
+        RacingCount racingCount = insertRacingCount();
+        Racing racing = Racing.of(cars, racingCount);
         // when
-        racing.raceOnce();
+        boolean raceResult = racing.canRace();
         // then
-        assertThat(pobi.getPosition()).isEqualTo(1);
-        assertThat(woni.getPosition()).isEqualTo(0);
-        assertThat(jun.getPosition()).isEqualTo(0);
-
+        assertThat(raceResult).isTrue();
     }
 
     @DisplayName("경주 결과를 반환한다")
     @Test
-    void racingResult(){
+    void racingResult() {
         // given
-        Car pobi = Car.from("pobi", new StubRandomNumberGenerator(4));
-        Car woni = Car.from("woni", new StubRandomNumberGenerator(3));
-        Car jun = Car.from("jun", new StubRandomNumberGenerator(1));
-
-        Cars cars = Cars.from(List.of(pobi,woni,jun));
-        Racing racing = Racing.from(cars);
+        Cars cars = generateCars();
+        RacingCount racingCount = insertRacingCount();
+        Racing racing = Racing.of(cars, racingCount);
         racing.raceOnce();
 
         // when
         List<CarResultDto> racingResults = racing.racingResult();
         // then
         assertThat(racingResults).containsExactly(
-                CarResultDto.of("pobi",1),
-                CarResultDto.of("woni",0),
-                CarResultDto.of("jun",0)
+                CarResultDto.of("pobi", 1),
+                CarResultDto.of("woni", 0),
+                CarResultDto.of("jun", 0)
         );
     }
 
     @DisplayName("우승자를 반환한다.")
     @Test
-    void resultRacingWinner(){
+    void resultRacingWinner() {
         // given
-        Car pobi = Car.from("pobi", new StubRandomNumberGenerator(4));
-        Car woni = Car.from("woni", new StubRandomNumberGenerator(3));
-        Car jun = Car.from("jun", new StubRandomNumberGenerator(1));
-
-        Cars cars = Cars.from(List.of(pobi,woni,jun));
-        Racing racing = Racing.from(cars);
+        Cars cars = generateCars();
+        RacingCount racingCount = insertRacingCount();
+        Racing racing = Racing.of(cars, racingCount);
         racing.raceOnce();
         // when
         List<String> winner = racing.findWinners();
@@ -91,19 +74,31 @@ class RacingTest {
 
     @DisplayName("우승자들을 반환한다.")
     @Test
-    void resultRacingWinners(){
+    void resultRacingWinners() {
         // given
         Car pobi = Car.from("pobi", new StubRandomNumberGenerator(4));
         Car woni = Car.from("woni", new StubRandomNumberGenerator(4));
         Car jun = Car.from("jun", new StubRandomNumberGenerator(1));
 
-        Cars cars = Cars.from(List.of(pobi,woni,jun));
-        Racing racing = Racing.from(cars);
+        Cars cars = Cars.from(List.of(pobi, woni, jun));
+        Racing racing = Racing.of(cars, RacingCount.from(1));
         racing.raceOnce();
         // when
         List<String> winner = racing.findWinners();
         // then
-        assertThat(winner).containsExactly("pobi","woni");
+        assertThat(winner).containsExactly("pobi", "woni");
 
+    }
+    private Cars generateCars() {
+        Car pobi = Car.from("pobi", new StubRandomNumberGenerator(4));
+        Car woni = Car.from("woni", new StubRandomNumberGenerator(3));
+        Car jun = Car.from("jun", new StubRandomNumberGenerator(1));
+
+        return Cars.from(
+                List.of(pobi, woni, jun)
+        );
+    }
+    private RacingCount insertRacingCount() {
+        return RacingCount.from(1);
     }
 }
