@@ -19,8 +19,8 @@ public class RacingCount {
         count -= 1;
     }
 
-    public boolean isEnd(){
-        return count == 0;
+    public boolean hasRemaining() {
+        return count != 0;
     }
 
     public int getCount() {

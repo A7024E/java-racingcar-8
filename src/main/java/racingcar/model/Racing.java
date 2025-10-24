@@ -23,7 +23,7 @@ public class Racing {
     }
 
     public boolean canRace() {
-        return racingCount.isEnd();
+        return racingCount.hasRemaining();
     }
 
     public void decrementRacingCount() {
