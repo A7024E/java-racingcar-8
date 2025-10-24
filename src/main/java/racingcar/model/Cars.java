@@ -1,5 +1,6 @@
 package racingcar.model;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -21,18 +22,42 @@ public class Cars {
 
     private void validateCars(List<Car> cars) {
         Set<Car> nonDuplicateCars = new HashSet<>(cars);
-        if(nonDuplicateCars.size() != cars.size()){
+        if (nonDuplicateCars.size() != cars.size()) {
             throw new IllegalArgumentException("자동차 이름은 중복이 될 수 없습니다");
         }
     }
 
-    public void carsMove(){
+    public void carsMove() {
         for (Car car : cars) {
             car.move();
         }
     }
 
-    public List<CarResultDto> carStatusResult(){
+    public List<String> findWinnersByMaxPosition() {
+        int maxPosition = getMaxPosition();
+        return addWinners(maxPosition);
+    }
+
+    private int getMaxPosition() {
+        int maxPosition = 0;
+        for (Car car : cars) {
+            maxPosition = car.maxPosition(maxPosition);
+        }
+        return maxPosition;
+    }
+
+    private List<String> addWinners(int maxPosition) {
+        List<String> winners = new ArrayList<>();
+        for (Car car : cars) {
+            if (car.isMaxPosition(maxPosition)) {
+                car.addWinner(winners);
+            }
+        }
+        return winners;
+    }
+
+
+    public List<CarResultDto> carStatusResult() {
         List<CarResultDto> racingResult = new ArrayList<>();
         for (Car car : cars) {
             CarResultDto carResultDto = car.toCarResultDto();
