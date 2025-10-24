@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import racingcar.dto.CarResultDto;
 import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.model.Racing;
@@ -33,11 +34,25 @@ public class RacingController {
         int count = inputView.inputCount();
         RacingCount racingCount = RacingCount.from(count);
 
+        outputView.printRacingResultMessage();
+
         Racing racing = Racing.from(cars);
-        while (!racingCount.isEnd()){
+
+        while (!isRacingAvailable(racingCount)){
             racing.raceOnce();
             racingCount.decrease();
+            List<CarResultDto> carResultDtos = racing.racingResult();
+            List<String> racingResultDtos = carResultDtos.stream()
+                    .map(dto -> dto.name() + " : " + "-".repeat(dto.position()))
+                    .toList();
+            outputView.printRacingResult(racingResultDtos);
         }
+
+
+    }
+
+    private boolean isRacingAvailable(RacingCount racingCount) {
+        return racingCount.isEnd();
     }
 
     private List<Car> generateCars(List<String> carInputs) {
