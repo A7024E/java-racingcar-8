@@ -74,9 +74,9 @@ class RacingTest {
     @Test
     void resultRacingWinners() {
         // given
-        Car pobi = Car.from("pobi", new StubRandomNumberGenerator(4));
-        Car woni = Car.from("woni", new StubRandomNumberGenerator(4));
-        Car jun = Car.from("jun", new StubRandomNumberGenerator(1));
+        Car pobi = Car.of("pobi", new StubRandomNumberGenerator(4));
+        Car woni = Car.of("woni", new StubRandomNumberGenerator(4));
+        Car jun = Car.of("jun", new StubRandomNumberGenerator(1));
 
         Cars cars = Cars.from(List.of(pobi, woni, jun));
         Racing racing = Racing.of(cars, RacingCount.from(1));
@@ -88,9 +88,9 @@ class RacingTest {
 
     }
     private Cars generateCars() {
-        Car pobi = Car.from("pobi", new StubRandomNumberGenerator(4));
-        Car woni = Car.from("woni", new StubRandomNumberGenerator(3));
-        Car jun = Car.from("jun", new StubRandomNumberGenerator(1));
+        Car pobi = Car.of("pobi", new StubRandomNumberGenerator(4));
+        Car woni = Car.of("woni", new StubRandomNumberGenerator(3));
+        Car jun = Car.of("jun", new StubRandomNumberGenerator(1));
 
         return Cars.from(
                 List.of(pobi, woni, jun)
