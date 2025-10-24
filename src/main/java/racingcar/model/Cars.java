@@ -1,9 +1,11 @@
 package racingcar.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import racingcar.dto.CarResultDto;
 
 public class Cars {
     private final List<Car> cars;
@@ -28,6 +30,15 @@ public class Cars {
         for (Car car : cars) {
             car.move();
         }
+    }
+
+    public List<CarResultDto> carStatusResult(){
+        List<CarResultDto> racingResult = new ArrayList<>();
+        for (Car car : cars) {
+            CarResultDto carResultDto = car.toCarResultDto();
+            racingResult.add(carResultDto);
+        }
+        return racingResult;
     }
 
     @Override

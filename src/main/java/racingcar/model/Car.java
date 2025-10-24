@@ -1,6 +1,7 @@
 package racingcar.model;
 
 import java.util.Objects;
+import racingcar.dto.CarResultDto;
 import racingcar.utils.RandomNumberStrategy;
 
 public class Car {
@@ -32,6 +33,10 @@ public class Car {
 
     private int generateRandomNumber() {
         return randomNumberStrategy.generateRandomNumber();
+    }
+
+    public CarResultDto toCarResultDto(){
+        return CarResultDto.of(name,position);
     }
 
     public String getName() {

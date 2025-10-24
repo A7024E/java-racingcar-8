@@ -1,7 +1,9 @@
 package racingcar.model;
 
 import java.security.PublicKey;
+import java.util.List;
 import java.util.Objects;
+import racingcar.dto.CarResultDto;
 
 public class Racing {
     private final Cars cars;
@@ -16,6 +18,10 @@ public class Racing {
 
     public void raceOnce(){
         cars.move();
+    }
+
+    public List<CarResultDto> racingResult(){
+        return cars.carStatusResult();
     }
 
     @Override
