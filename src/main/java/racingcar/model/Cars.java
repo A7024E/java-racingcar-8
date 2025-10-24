@@ -26,7 +26,7 @@ public class Cars {
         }
     }
 
-    public void move(){
+    public void carsMove(){
         for (Car car : cars) {
             car.move();
         }

@@ -17,7 +17,7 @@ public class Racing {
     }
 
     public void raceOnce(){
-        cars.move();
+        cars.carsMove();
     }
 
     public List<CarResultDto> racingResult(){
