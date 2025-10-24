@@ -14,7 +14,7 @@ public class Racing {
         this.racingCount = racingCount;
     }
 
-    public static Racing of(Cars cars,RacingCount racingCount) {
+    public static Racing of(Cars cars, RacingCount racingCount) {
         return new Racing(cars, racingCount);
     }
 
@@ -30,4 +30,20 @@ public class Racing {
         return cars.findWinnersByMaxPosition();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Racing racing = (Racing) o;
+        return Objects.equals(cars, racing.cars) && Objects.equals(racingCount, racing.racingCount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cars, racingCount);
+    }
 }
