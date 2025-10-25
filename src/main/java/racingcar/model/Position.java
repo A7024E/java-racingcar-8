@@ -5,6 +5,8 @@ import racingcar.exception.PositionValidation;
 
 public class Position {
 
+    private static final int MOVE_DISTANCE = 1;
+
     public int position;
 
     private Position(int position) {
@@ -17,7 +19,7 @@ public class Position {
     }
 
     public void forward() {
-        position = position + 1;
+        position = position + MOVE_DISTANCE;
     }
 
     public int calculateMaxPosition(int maxPosition) {
