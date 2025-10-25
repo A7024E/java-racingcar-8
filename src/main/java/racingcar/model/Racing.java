@@ -18,7 +18,7 @@ public class Racing {
     }
 
     public void raceOnce() {
-        cars.carsMove();
+        cars.move();
     }
 
     public boolean canRace() {
