@@ -1,12 +1,13 @@
 package racingcar.model;
 
 import java.util.Objects;
+import racingcar.exception.PositionValidation;
 
 public class Position {
     public int position;
 
     private Position(int position) {
-        validate(position);
+        PositionValidation.validate(position);
         this.position = position;
     }
 
@@ -14,11 +15,6 @@ public class Position {
         return new Position(position);
     }
 
-    public void validate(int position){
-        if(position < 0){
-            throw new IllegalArgumentException("포지션은 음수가 될 수 없습니다 ");
-        }
-    }
 
     public void forward() {
         position = position + 1;
