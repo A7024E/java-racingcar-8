@@ -2,6 +2,7 @@ package racingcar.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import racingcar.exception.ErrorMessages;
 import racingcar.utils.Converter;
 
 public class InputView {
@@ -20,7 +21,7 @@ public class InputView {
         try {
             return Integer.parseInt(racingCount);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException("시도 횟수는 1이상의 정수로 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.INVALID_RACING_COUNT_INPUT.message());
         }
     }
 }
