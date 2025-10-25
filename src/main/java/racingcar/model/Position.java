@@ -32,7 +32,7 @@ public class Position {
         return this.position == maxPosition;
     }
 
-    public int value() {
+    public int getPosition() {
         return position;
     }
 
