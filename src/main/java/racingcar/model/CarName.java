@@ -1,5 +1,6 @@
 package racingcar.model;
 
+import java.util.List;
 import java.util.Objects;
 
 public class CarName {
@@ -11,6 +12,10 @@ public class CarName {
 
     public static CarName from(String carName) {
         return new CarName(carName);
+    }
+
+    public String value(){
+        return carName;
     }
 
     @Override

@@ -13,7 +13,7 @@ public class Position {
         return new Position(position);
     }
 
-    public void move() {
+    public void forward() {
         position = position + 1;
     }
 
@@ -21,8 +21,12 @@ public class Position {
         return Math.max(maxPosition, this.position);
     }
 
-    public boolean isMaxPosition(int maxPosition) {
+    public boolean isSamePosition(int maxPosition) {
         return this.position == maxPosition;
+    }
+
+    public int value() {
+        return position;
     }
 
     @Override
