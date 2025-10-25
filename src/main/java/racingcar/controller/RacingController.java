@@ -1,13 +1,8 @@
 package racingcar.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import racingcar.dto.CarResultDto;
-import racingcar.model.Car;
-import racingcar.model.Cars;
 import racingcar.model.Racing;
-import racingcar.model.RacingCount;
-import racingcar.utils.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -30,12 +25,7 @@ public class RacingController {
     private void prepareRace() {
         List<String> cars = readyCars();
         int count = inputRacingCount();
-        racing = Racing.of(cars,count);
-    }
-
-    private void displayWinners() {
-        List<String> winners = racing.findWinners();
-        outputView.printWinner(winners);
+        racing = Racing.of(cars, count);
     }
 
     private void runRacingGame() {
@@ -45,16 +35,15 @@ public class RacingController {
         }
     }
 
+    private void displayWinners() {
+        List<String> winners = racing.findWinners();
+        outputView.printWinner(winners);
+    }
+
     private void racingAround() {
         proceedOneRound();
         List<String> racingResultDtos = oneRoundResult();
         outputView.printRacingResult(racingResultDtos);
-    }
-
-    private List<String> oneRoundResult() {
-        List<CarResultDto> carResultDtos = racing.racingResult();
-        List<String> racingResult = mapToResultStrings(carResultDtos);
-        return racingResult;
     }
 
     private void proceedOneRound() {
@@ -62,10 +51,9 @@ public class RacingController {
         racing.decrementRacingCount();
     }
 
-    private static List<String> mapToResultStrings(List<CarResultDto> carResultDtos) {
-        return carResultDtos.stream()
-                .map(dto -> dto.name() + " : " + "-".repeat(dto.position()))
-                .toList();
+    private List<String> oneRoundResult() {
+        List<CarResultDto> carResultDtos = racing.racingResult();
+        return mapToResultStrings(carResultDtos);
     }
 
     private List<String> readyCars() {
@@ -78,5 +66,9 @@ public class RacingController {
         return inputView.inputCount();
     }
 
-
+    private static List<String> mapToResultStrings(List<CarResultDto> carResultDtos) {
+        return carResultDtos.stream()
+                .map(dto -> dto.name() + " : " + "-".repeat(dto.position()))
+                .toList();
+    }
 }
