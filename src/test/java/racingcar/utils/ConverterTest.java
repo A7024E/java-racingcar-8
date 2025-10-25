@@ -1,15 +1,14 @@
 package racingcar.utils;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import racingcar.model.Cars;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ConverterTest {
 
@@ -28,14 +27,22 @@ class ConverterTest {
         assertThat(cars).hasSize(carNameSize);
     }
 
-    @DisplayName("시도 횟수에 정수 외의 문자가 들어갔을때 예외발생")
-    @Test
-    void invalidRacingCountInput(){
-        // given
-        String input = "a123";
-        // when// then
-        assertThatThrownBy(() -> Converter.toInt(input))
+    @DisplayName("공백이 포함되거나, 정수 이외의 값이 들어오면 예외를 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "1 3", " ", "1.2"})
+    void invalidRacingCountInputs(String tryCount) {
+        //given //when //then
+        assertThatThrownBy(() -> Converter.toInt(tryCount))
                 .isInstanceOf(NumberFormatException.class);
+    }
+
+    @DisplayName("1 이상의 정수값이 들어오면 예외를 발생하지 않는다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "13", "12"})
+    void notInvalidRacingCountInputs(String tryCount) {
+        //given //when //then
+        assertThatCode(() -> Converter.toInt(tryCount))
+                .doesNotThrowAnyException();
     }
 
 
