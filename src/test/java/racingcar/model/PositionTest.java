@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class PositionTest {
     @DisplayName("Position 객체 생성")
@@ -40,5 +42,35 @@ class PositionTest {
 
         //then
         assertThat(position).isEqualTo(Position.from(1));
+    }
+
+    @DisplayName("주어진 position과 현재 position을 비교하여 더 큰 position을 반환한다.")
+    @Test
+    void calculateMaxPosition() {
+        //given
+        int maxPosition = 2;
+        int presentPosition = 3;
+        Position position = Position.from(presentPosition);
+
+        //when
+        int result = position.calculateMaxPosition(maxPosition);
+
+        //then
+        assertThat(result).isEqualTo(presentPosition);
+    }
+
+    @DisplayName("주어진 최대 position과 현재 position을 비교하여 참, 거짓을 반환한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"3, true", "2, false"})
+    void isMaxPosition(int maxPosition, boolean expectedValue) {
+        //given
+        int presentPosition = 3;
+        Position position = Position.from(presentPosition);
+
+        //when
+        boolean result = position.isSamePosition(maxPosition);
+
+        //then
+        assertThat(result).isEqualTo(expectedValue);
     }
 }
