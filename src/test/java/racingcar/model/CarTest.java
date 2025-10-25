@@ -24,7 +24,7 @@ class CarTest {
         Car car = Car.of(carName, new RandomNumberGenerator());
 
         //then
-        assertThat(car.getName()).isEqualTo(carName);
+        assertThat(car).isEqualTo(carName);
     }
 
     @DisplayName("자동차 이름값이 null 또는 빈 문자열이면 true를 반환")
@@ -71,7 +71,7 @@ class CarTest {
         Car car = Car.of(carName, new RandomNumberGenerator());
 
         //then
-        assertThat(car.getPosition()).isEqualTo(0);
+        assertThat(car).isEqualTo(0);
     }
 
     @DisplayName("자동차의 이름이 5글자 초과시 예외처리")
@@ -94,7 +94,7 @@ class CarTest {
         // when
         car.move();
         // then
-        assertThat(car.getPosition()).isEqualTo(position);
+        assertThat(car).isEqualTo(position);
     }
 
 }
