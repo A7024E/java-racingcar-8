@@ -1,8 +1,8 @@
 package racingcar.exception;
 
-public final class CarValidation {
+public final class CarNameValidation {
 
-    private CarValidation() {
+    private CarNameValidation() {
 
     }
 
