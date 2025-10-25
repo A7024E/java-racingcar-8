@@ -77,7 +77,7 @@ class RacingTest {
         Car woni = Car.of("woni", new StubRandomNumberGenerator(4));
         Car jun = Car.of("jun", new StubRandomNumberGenerator(1));
 
-        Cars cars = Cars.from(List.of(pobi, woni, jun));
+        Cars cars = Cars.fromCars(List.of(pobi, woni, jun));
         Racing racing = Racing.of(cars, RacingCount.from(1));
         racing.raceOnce();
         // when
@@ -92,10 +92,11 @@ class RacingTest {
         Car woni = Car.of("woni", new StubRandomNumberGenerator(3));
         Car jun = Car.of("jun", new StubRandomNumberGenerator(1));
 
-        return Cars.from(
+        return Cars.fromCars(
                 List.of(pobi, woni, jun)
         );
     }
+
     private RacingCount insertRacingCount() {
         return RacingCount.from(1);
     }

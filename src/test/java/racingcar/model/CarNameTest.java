@@ -54,7 +54,7 @@ class CarNameTest {
         CarName carName = CarName.from("pobi");
 
         //when
-        winner.add(carName.value());
+        winner.add(carName.getCarName());
 
         //then
         assertThat(winner).containsExactly("pobi");
