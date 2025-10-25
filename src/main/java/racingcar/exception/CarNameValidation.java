@@ -2,6 +2,9 @@ package racingcar.exception;
 
 public final class CarNameValidation {
 
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final String BLANK = " ";
+
     private CarNameValidation() {
 
     }
@@ -23,10 +26,10 @@ public final class CarNameValidation {
     }
 
     private static boolean isBlankContains(String carName) {
-        return carName.contains(" ");
+        return carName.contains(BLANK);
     }
 
     private static boolean isCarNameRange(String input) {
-        return input.length() > 5;
+        return input.length() > MAX_NAME_LENGTH;
     }
 }
