@@ -1,10 +1,8 @@
 package racingcar.model;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import racingcar.dto.CarResultDto;
 import racingcar.exception.CarsValidation;
 import racingcar.utils.RandomNumberGenerator;

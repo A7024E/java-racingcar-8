@@ -15,7 +15,6 @@ public class Position {
         return new Position(position);
     }
 
-
     public void forward() {
         position = position + 1;
     }
