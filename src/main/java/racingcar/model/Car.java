@@ -3,7 +3,6 @@ package racingcar.model;
 import java.util.List;
 import java.util.Objects;
 import racingcar.dto.CarResultDto;
-import racingcar.exception.CarValidation;
 import racingcar.utils.RandomNumberStrategy;
 
 public class Car {
@@ -12,7 +11,6 @@ public class Car {
     private final RandomNumberStrategy randomNumberStrategy;
 
     private Car(String name, RandomNumberStrategy randomNumberStrategy) {
-        CarValidation.validate(name);
         this.name = CarName.from(name);
         this.position = Position.from(0);
         this.randomNumberStrategy = randomNumberStrategy;
