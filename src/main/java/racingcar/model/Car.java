@@ -23,7 +23,7 @@ public class Car {
         return new Car(name, randomNumberStrategy);
     }
 
-    public void move() {
+    public void moveIfPossible() {
         int randomNumber = randomNumberStrategy.generateNumber();
         if (isMovable(randomNumber)) {
             moveForward();

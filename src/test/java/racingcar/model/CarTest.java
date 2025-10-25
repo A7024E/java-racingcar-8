@@ -34,7 +34,7 @@ class CarTest {
         // given
         Car car = Car.of("pobi", new StubRandomNumberGenerator(randomNumber));
         // when
-        car.move();
+        car.moveIfPossible();
         // then
         CarResultDto carStatusDto = car.toCarResultDto();
         assertThat(carStatusDto.position()).isEqualTo(position);
@@ -47,9 +47,9 @@ class CarTest {
         Car car = Car.of("pobi", new StubRandomNumberGenerator(4));
         int position = 2;
 
-        car.move();
-        car.move();
-        car.move();
+        car.moveIfPossible();
+        car.moveIfPossible();
+        car.moveIfPossible();
         //when
         int maxPosition = car.maxPosition(position);
 
