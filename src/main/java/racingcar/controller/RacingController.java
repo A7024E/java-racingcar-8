@@ -43,7 +43,7 @@ public class RacingController {
 
     private void racingAround() {
         proceedOneRound();
-        List<String> racingResultDtos = oneRoundResult();
+        List<CarResultDto> racingResultDtos = racing.racingResult();
         outputView.printRacingResult(racingResultDtos);
     }
 
@@ -52,10 +52,6 @@ public class RacingController {
         racing.decrementRacingCount();
     }
 
-    private List<String> oneRoundResult() {
-        List<CarResultDto> carResultDtos = racing.racingResult();
-        return mapToResultStrings(carResultDtos);
-    }
 
     private List<String> readyCars() {
         outputView.printInputCarNames();
@@ -67,9 +63,5 @@ public class RacingController {
         return inputView.inputCount();
     }
 
-    private static List<String> mapToResultStrings(List<CarResultDto> carResultDtos) {
-        return carResultDtos.stream()
-                .map(dto -> dto.name() + " : " + "-".repeat(dto.position()))
-                .toList();
-    }
+
 }

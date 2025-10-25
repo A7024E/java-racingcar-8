@@ -1,6 +1,8 @@
 package racingcar.view;
 
+import java.util.ArrayList;
 import java.util.List;
+import racingcar.dto.CarResultDto;
 
 public class OutputView {
 
@@ -9,6 +11,8 @@ public class OutputView {
     private static final String RACING_RESULT_MESSAGE = "실행 결과";
     private static final String WINNER_MESSAGE_PREFIX = "최종 우승자 : ";
     private static final String NAME_DELIMITER = ", ";
+    private static final String FORWARD_DASH = "-";
+    private static final String RESULT_SEPARATOR = " : ";
 
     public void printInputCarNames() {
         System.out.println(INPUT_CAR_NAMES_MESSAGE);
@@ -22,9 +26,10 @@ public class OutputView {
         System.out.println(System.lineSeparator() + RACING_RESULT_MESSAGE);
     }
 
-    public void printRacingResult(List<String> racingResult) {
-        for (String input : racingResult) {
-            System.out.println(input);
+    public void printRacingResult(List<CarResultDto> carResultDtos) {
+        List<String> results = formatRacingResult(carResultDtos);
+        for (String result : results) {
+            System.out.println(result);
         }
         System.out.println();
     }
@@ -34,4 +39,12 @@ public class OutputView {
         System.out.println(WINNER_MESSAGE_PREFIX + winner);
     }
 
+    private List<String> formatRacingResult(List<CarResultDto> carResultDtos) {
+        List<String> results = new ArrayList<>();
+        for (CarResultDto dto : carResultDtos) {
+            String formatted = dto.name() + RESULT_SEPARATOR + FORWARD_DASH.repeat(dto.position());
+            results.add(formatted);
+        }
+        return results;
+    }
 }
