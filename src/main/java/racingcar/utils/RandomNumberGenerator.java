@@ -4,8 +4,11 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class RandomNumberGenerator implements RandomNumberStrategy {
 
+    private static final int MIN_RANDOM_NUMBER_RANGE = 0;
+    private static final int MAX_RANDOM_NUMBER_RANGE = 9;
+
     @Override
     public int generateNumber() {
-        return Randoms.pickNumberInRange(0,9);
+        return Randoms.pickNumberInRange(MIN_RANDOM_NUMBER_RANGE,MAX_RANDOM_NUMBER_RANGE);
     }
 }
