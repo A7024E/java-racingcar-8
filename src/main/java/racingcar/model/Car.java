@@ -31,6 +31,10 @@ public class Car {
         return randomNumber >= 4;
     }
 
+    private void moveForward() {
+        position.forward();
+    }
+
     public void addWinner(List<String> winners) {
         name.add(winners);
     }
@@ -41,10 +45,6 @@ public class Car {
 
     public boolean isMaxPosition(int maxPosition) {
         return position.isSamePosition(maxPosition);
-    }
-
-    private void moveForward() {
-        position.forward();
     }
 
     public CarResultDto toCarResultDto() {
