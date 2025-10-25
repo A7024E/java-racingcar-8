@@ -11,8 +11,12 @@ public class PositionValidation {
     }
 
     private static void ensureNonNegative(int position){
-        if(position < 0){
+        if(isNegative(position)){
             throw new IllegalArgumentException("포지션은 음수가 될 수 없습니다 ");
         }
+    }
+
+    private static boolean isNegative(int position) {
+        return position < 0;
     }
 }

@@ -15,8 +15,12 @@ public class CarsValidation {
 
     private static void validateCars(List<Car> cars) {
         Set<Car> nonDuplicateCars = new HashSet<>(cars);
-        if (nonDuplicateCars.size() != cars.size()) {
+        if (isDupulicateCars(cars, nonDuplicateCars)) {
             throw new IllegalArgumentException("자동차 이름은 중복이 될 수 없습니다");
         }
+    }
+
+    private static boolean isDupulicateCars(List<Car> cars, Set<Car> nonDuplicateCars) {
+        return nonDuplicateCars.size() != cars.size();
     }
 }
