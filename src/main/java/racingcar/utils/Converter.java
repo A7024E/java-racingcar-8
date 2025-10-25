@@ -12,7 +12,7 @@ public class Converter {
         try {
             return Integer.parseInt(racingCount);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_RACING_COUNT_INPUT.message());
+            throw new NumberFormatException(ErrorMessages.INVALID_RACING_COUNT_INPUT.message());
         }
     }
 

@@ -35,7 +35,7 @@ class ConverterTest {
         String input = "a123";
         // when// then
         assertThatThrownBy(() -> Converter.toInt(input))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(NumberFormatException.class);
     }
 
 
