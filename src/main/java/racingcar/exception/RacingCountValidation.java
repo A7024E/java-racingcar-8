@@ -2,18 +2,20 @@ package racingcar.exception;
 
 public class RacingCountValidation {
 
+    private static final int MIN_COUNT = 0;
+
     private RacingCountValidation() {
 
     }
 
     public static void validate(int count) {
-        if (isRacingCountRange(count)) {
+        if (isInvalidRacingCount(count)) {
             throw new IllegalArgumentException(ErrorMessages.INVALID_RACING_COUNT.message());
         }
     }
 
-    private static boolean isRacingCountRange(int count) {
-        return count <= 0;
+    private static boolean isInvalidRacingCount(int count) {
+        return count <= MIN_COUNT;
     }
 
 }
