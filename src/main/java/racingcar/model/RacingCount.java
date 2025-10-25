@@ -5,6 +5,9 @@ import racingcar.exception.RacingCountValidation;
 
 public class RacingCount {
 
+    private static final int DECREASE_UNIT = 1;
+    private static final int EMPTY_COUNT = 0;
+
     private int count;
 
     private RacingCount(int count) {
@@ -17,11 +20,11 @@ public class RacingCount {
     }
 
     public void decrease() {
-        count -= 1;
+        count -= DECREASE_UNIT;
     }
 
     public boolean hasRemaining() {
-        return count != 0;
+        return count != EMPTY_COUNT;
     }
 
     public int getCount() {
