@@ -1,6 +1,9 @@
 package racingcar.exception;
 
 public class RacingCountValidation {
+    private RacingCountValidation() {
+
+    }
 
     public static void validate(int count) {
         if (isRacingCountRange(count)) {

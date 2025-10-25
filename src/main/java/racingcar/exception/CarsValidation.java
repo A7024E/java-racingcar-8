@@ -6,6 +6,9 @@ import java.util.Set;
 import racingcar.model.Car;
 
 public class CarsValidation {
+    private CarsValidation() {
+
+    }
     public static void validate(List<Car> cars) {
         validateCars(cars);
     }
