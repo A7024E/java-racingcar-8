@@ -25,7 +25,8 @@ class CarTest {
         Car car = Car.of(carName, new RandomNumberGenerator());
 
         //then
-        assertThat(car).isEqualTo(carName);
+        CarResultDto carStatusDto = car.toCarResultDto();
+        assertThat(carStatusDto.name()).isEqualTo(carName);
     }
 
 
