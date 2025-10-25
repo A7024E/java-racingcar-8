@@ -1,12 +1,13 @@
 package racingcar.model;
 
-import java.util.List;
 import java.util.Objects;
+import racingcar.exception.CarNameValidation;
 
 public class CarName {
     private String carName;
 
     private CarName(String carName) {
+        CarNameValidation.validate(carName);
         this.carName = carName;
     }
 
