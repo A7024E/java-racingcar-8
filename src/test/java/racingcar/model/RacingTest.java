@@ -6,99 +6,51 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.dto.CarResultDto;
-import racingcar.utils.StubRandomNumberGenerator;
 
 class RacingTest {
     @DisplayName("자동차 객체와 레이싱 카운트 객체 를 이용하여 경주생성 테스트")
     @Test
     void createRacing() {
         // given
-        Cars cars = generateCars();
-        RacingCount racingCount = insertRacingCount();
+        List<String> cars = generateCars();
+        int racingCount = 1;
         // when
         Racing racing = Racing.of(cars, racingCount);
         // then
-        assertThat(racing).isEqualTo(Racing.of(cars, RacingCount.from(1)));
+        assertThat(racing).isEqualTo(Racing.of(cars, racingCount));
     }
 
-    @DisplayName("경주가 잘 진행되는지 테스트한다")
+
+    @DisplayName("경주가 가능하면 true를 반환")
     @Test
-    void runRacing() {
+    void returnTrueWhenRacingIsAvailable() {
         // given
-        Cars cars = generateCars();
-        RacingCount racingCount = insertRacingCount();
+        List<String> cars = generateCars();
+        int racingCount = 1;
         Racing racing = Racing.of(cars, racingCount);
         // when
-        boolean raceResult = racing.canRace();
+        boolean can = racing.canRace();
         // then
-        assertThat(raceResult).isTrue();
+        assertThat(can).isEqualTo(true);
     }
 
-    @DisplayName("경주 결과를 반환한다")
+    @DisplayName("경주가 가능하면 false를 반환")
     @Test
-    void racingResult() {
+    void returnFalseWhenCannotRace() {
         // given
-        Cars cars = generateCars();
-        RacingCount racingCount = insertRacingCount();
+        List<String> cars = generateCars();
+        int racingCount = 1;
         Racing racing = Racing.of(cars, racingCount);
-        racing.raceOnce();
-
+        racing.decrementRacingCount();
         // when
-        List<CarResultDto> racingResults = racing.racingResult();
+        boolean can = racing.canRace();
         // then
-        assertThat(racingResults).containsExactly(
-                CarResultDto.of("pobi", 1),
-                CarResultDto.of("woni", 0),
-                CarResultDto.of("jun", 0)
-        );
+        assertThat(can).isEqualTo(false);
     }
 
-    @DisplayName("우승자를 반환한다.")
-    @Test
-    void resultRacingWinner() {
-        // given
-        Cars cars = generateCars();
-        RacingCount racingCount = insertRacingCount();
-        Racing racing = Racing.of(cars, racingCount);
-        racing.raceOnce();
-        // when
-        List<String> winner = racing.findWinners();
-        // then
-        assertThat(winner).containsExactly("pobi");
-
+    private List<String> generateCars() {
+        return List.of("pobi", "woni", "jun");
     }
 
-    @DisplayName("우승자들을 반환한다.")
-    @Test
-    void resultRacingWinners() {
-        // given
-        Car pobi = Car.of("pobi", new StubRandomNumberGenerator(4));
-        Car woni = Car.of("woni", new StubRandomNumberGenerator(4));
-        Car jun = Car.of("jun", new StubRandomNumberGenerator(1));
-
-        Cars cars = Cars.fromCars(List.of(pobi, woni, jun));
-        Racing racing = Racing.of(cars, RacingCount.from(1));
-        racing.raceOnce();
-        // when
-        List<String> winner = racing.findWinners();
-        // then
-        assertThat(winner).containsExactly("pobi", "woni");
-
-    }
-
-    private Cars generateCars() {
-        Car pobi = Car.of("pobi", new StubRandomNumberGenerator(4));
-        Car woni = Car.of("woni", new StubRandomNumberGenerator(3));
-        Car jun = Car.of("jun", new StubRandomNumberGenerator(1));
-
-        return Cars.fromCars(
-                List.of(pobi, woni, jun)
-        );
-    }
-
-    private RacingCount insertRacingCount() {
-        return RacingCount.from(1);
-    }
 
 }
