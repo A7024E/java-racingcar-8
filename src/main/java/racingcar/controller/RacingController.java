@@ -62,6 +62,4 @@ public class RacingController {
         outputView.printTryCount();
         return inputView.inputCount();
     }
-
-
 }

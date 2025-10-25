@@ -17,5 +17,4 @@ public class RacingCountValidation {
     private static boolean isInvalidRacingCount(int count) {
         return count <= MIN_COUNT;
     }
-
 }

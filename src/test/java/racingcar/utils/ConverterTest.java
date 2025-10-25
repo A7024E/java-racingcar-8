@@ -44,6 +44,4 @@ class ConverterTest {
         assertThatCode(() -> Converter.toInt(tryCount))
                 .doesNotThrowAnyException();
     }
-
-
 }

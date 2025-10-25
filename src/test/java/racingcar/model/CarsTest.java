@@ -41,5 +41,4 @@ class CarsTest {
         assertThatCode(() -> Cars.fromCarNames(carNames))
                 .doesNotThrowAnyException();
     }
-
 }

@@ -59,5 +59,4 @@ class CarNameTest {
         //then
         assertThat(winner).containsExactly("pobi");
     }
-
 }

@@ -56,5 +56,4 @@ class CarTest {
         //then
         assertThat(maxPosition).isEqualTo(car.maxPosition(position));
     }
-
 }

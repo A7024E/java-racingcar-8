@@ -16,5 +16,4 @@ class RandomNumberGeneratorTest {
         // then
         assertThat(randomNumber).isBetween(0,9);
     }
-
 }

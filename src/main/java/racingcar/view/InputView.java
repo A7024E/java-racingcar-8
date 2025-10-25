@@ -17,5 +17,4 @@ public class InputView {
     public int inputCount() {
         return Converter.toInt(Console.readLine());
     }
-
 }

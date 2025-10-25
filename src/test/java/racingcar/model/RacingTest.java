@@ -51,6 +51,4 @@ class RacingTest {
     private List<String> generateCars() {
         return List.of("pobi", "woni", "jun");
     }
-
-
 }
