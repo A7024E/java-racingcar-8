@@ -7,11 +7,12 @@ public class RacingCountValidation {
 
     public static void validate(int count) {
         if (isRacingCountRange(count)) {
-            throw new IllegalArgumentException("시도횟수는 최소 1 이상이여야 합니다");
+            throw new IllegalArgumentException(ErrorMessages.INVALID_RACING_COUNT.message());
         }
     }
 
     private static boolean isRacingCountRange(int count) {
         return count <= 0;
     }
+
 }
