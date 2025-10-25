@@ -32,14 +32,14 @@ class RacingCountTest {
     @Test
     void decreaseRacingCount() {
         // given
-        int count = 1;
+        int count = 2;
         RacingCount racingCount = RacingCount.from(count);
 
         // when
         racingCount.decrease();
 
         // then
-        assertThat(racingCount.getCount()).isEqualTo(--count);
+        assertThat(racingCount.getCount()).isEqualTo(1);
 
     }
 
