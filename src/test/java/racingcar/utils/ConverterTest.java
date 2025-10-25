@@ -16,15 +16,14 @@ class ConverterTest {
             "'pobi,woni,jun', 3,",
             "'pobi', 1"
     })
-    void splitCarNames(String carNames,int carNameSize) {
+    void splitCarNames(String carNames, int carNameSize) {
         //given
         String[] splitCarNames = carNames.split(",");
-
         //when
-        List<String> cars = Converter.generateCarNames(splitCarNames);
-
+        List<String> cars = Converter.toList(splitCarNames);
         //then
         assertThat(cars).hasSize(carNameSize);
     }
+
 
 }

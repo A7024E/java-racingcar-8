@@ -10,18 +10,11 @@ public class InputView {
     public List<String> inputCarNames() {
         String input = Console.readLine();
         String[] inputs = input.split(",");
-        return Converter.generateCarNames(inputs);
+        return Converter.toList(inputs);
     }
 
     public int inputCount() {
-        return parseRacingCount(Console.readLine());
+        return Converter.toInt(Console.readLine());
     }
 
-    private int parseRacingCount(String racingCount) {
-        try {
-            return Integer.parseInt(racingCount);
-        } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_RACING_COUNT_INPUT.message());
-        }
-    }
 }
