@@ -3,14 +3,26 @@ package racingcar.model;
 import java.util.Objects;
 
 public class Position {
-    public int Position;
+    public int position;
 
     private Position(int position) {
-        Position = position;
+        this.position = position;
     }
 
     public static Position from(int position) {
         return new Position(position);
+    }
+
+    public void move() {
+        position = position + 1;
+    }
+
+    public int calculateMaxPosition(int maxPosition) {
+        return Math.max(maxPosition, this.position);
+    }
+
+    public boolean isMaxPosition(int maxPosition) {
+        return this.position == maxPosition;
     }
 
     @Override
@@ -21,12 +33,12 @@ public class Position {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Position position = (Position) o;
-        return Position == position.Position;
+        Position position1 = (Position) o;
+        return position == position1.position;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(Position);
+        return Objects.hashCode(position);
     }
 }
