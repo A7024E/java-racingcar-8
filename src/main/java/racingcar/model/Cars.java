@@ -1,6 +1,5 @@
 package racingcar.model;
 
-import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -17,11 +16,11 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars fromCarNames(List<String> cars){
-        return Cars.from(generateCars(cars));
+    public static Cars fromCarNames(List<String> carsNames) {
+        return Cars.fromCars(generateCars(carsNames));
     }
 
-    protected static Cars from(List<Car> cars) {
+    protected static Cars fromCars(List<Car> cars) {
         return new Cars(cars);
     }
 
@@ -40,7 +39,7 @@ public class Cars {
         return cars;
     }
 
-    public void carsMove() {
+    public void move() {
         for (Car car : cars) {
             car.move();
         }
@@ -80,9 +79,6 @@ public class Cars {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
         if (o == null || getClass() != o.getClass()) {
             return false;
         }

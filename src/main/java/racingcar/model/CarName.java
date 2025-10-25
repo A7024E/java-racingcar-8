@@ -1,5 +1,6 @@
 package racingcar.model;
 
+import java.util.List;
 import java.util.Objects;
 import racingcar.exception.CarNameValidation;
 
@@ -15,7 +16,11 @@ public class CarName {
         return new CarName(carName);
     }
 
-    public String value(){
+    public void add(List<String> winners) {
+        winners.add(this.carName);
+    }
+
+    public String getCarName() {
         return carName;
     }
 

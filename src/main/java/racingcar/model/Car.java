@@ -28,7 +28,7 @@ public class Car {
     }
 
     public void addWinner(List<String> winners) {
-        winners.add(name.value());
+        name.add(winners);
     }
 
     public int maxPosition(int maxPosition) {
@@ -48,7 +48,7 @@ public class Car {
     }
 
     public CarResultDto toCarResultDto() {
-        return CarResultDto.of(name.value(), position.value());
+        return CarResultDto.of(name.getCarName(), position.getPosition());
     }
 
     @Override
@@ -60,11 +60,11 @@ public class Car {
             return false;
         }
         Car car = (Car) o;
-        return position == car.position && Objects.equals(name, car.name);
+        return Objects.equals(name, car.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, position);
+        return Objects.hash(name);
     }
 }
