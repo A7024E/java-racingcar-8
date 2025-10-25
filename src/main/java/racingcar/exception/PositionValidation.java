@@ -2,6 +2,8 @@ package racingcar.exception;
 
 public class PositionValidation {
 
+    private static final int MIN_POSITION = 0;
+
     private PositionValidation() {
 
     }
@@ -17,6 +19,6 @@ public class PositionValidation {
     }
 
     private static boolean isNegative(int position) {
-        return position < 0;
+        return position < MIN_POSITION;
     }
 }
