@@ -28,4 +28,17 @@ class PositionTest {
         assertThatThrownBy(() -> Position.from(position))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("position 값이 1만큼 증가")
+    @Test
+    void move() {
+        //given
+        Position position = Position.from(0);
+
+        //when
+        position.forward();
+
+        //then
+        assertThat(position).isEqualTo(Position.from(1));
+    }
 }
