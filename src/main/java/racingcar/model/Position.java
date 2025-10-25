@@ -4,6 +4,7 @@ import java.util.Objects;
 import racingcar.exception.PositionValidation;
 
 public class Position {
+
     public int position;
 
     private Position(int position) {

@@ -5,6 +5,7 @@ import java.util.Objects;
 import racingcar.exception.CarNameValidation;
 
 public class CarName {
+
     private String carName;
 
     private CarName(String carName) {

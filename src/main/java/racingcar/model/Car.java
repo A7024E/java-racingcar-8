@@ -6,6 +6,7 @@ import racingcar.dto.CarResultDto;
 import racingcar.utils.RandomNumberStrategy;
 
 public class Car {
+
     private final CarName name;
     private final Position position;
     private final RandomNumberStrategy randomNumberStrategy;

@@ -1,6 +1,7 @@
 package racingcar.exception;
 
 public class RacingCountValidation {
+
     private RacingCountValidation() {
 
     }

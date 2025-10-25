@@ -6,6 +6,7 @@ import java.util.Set;
 import racingcar.model.Car;
 
 public class CarsValidation {
+
     private CarsValidation() {
 
     }

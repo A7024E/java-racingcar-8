@@ -5,6 +5,7 @@ import java.util.Objects;
 import racingcar.dto.CarResultDto;
 
 public class Racing {
+
     private final Cars cars;
     private final RacingCount racingCount;
 

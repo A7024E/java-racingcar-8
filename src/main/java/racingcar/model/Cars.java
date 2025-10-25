@@ -8,6 +8,7 @@ import racingcar.exception.CarsValidation;
 import racingcar.utils.RandomNumberGenerator;
 
 public class Cars {
+
     private final List<Car> cars;
 
     private Cars(List<Car> cars) {

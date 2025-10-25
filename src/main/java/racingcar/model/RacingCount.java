@@ -4,6 +4,7 @@ import java.util.Objects;
 import racingcar.exception.RacingCountValidation;
 
 public class RacingCount {
+
     private int count;
 
     private RacingCount(int count) {
