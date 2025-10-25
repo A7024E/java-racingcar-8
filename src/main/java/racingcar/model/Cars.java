@@ -6,13 +6,14 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import racingcar.dto.CarResultDto;
+import racingcar.exception.CarsValidation;
 import racingcar.utils.RandomNumberGenerator;
 
 public class Cars {
     private final List<Car> cars;
 
     private Cars(List<Car> cars) {
-        validateCars(cars);
+        CarsValidation.validate(cars);
         this.cars = cars;
     }
 
@@ -22,13 +23,6 @@ public class Cars {
 
     protected static Cars fromCars(List<Car> cars) {
         return new Cars(cars);
-    }
-
-    private void validateCars(List<Car> cars) {
-        Set<Car> nonDuplicateCars = new HashSet<>(cars);
-        if (nonDuplicateCars.size() != cars.size()) {
-            throw new IllegalArgumentException("자동차 이름은 중복이 될 수 없습니다");
-        }
     }
 
     private static List<Car> generateCars(List<String> carNames) {
