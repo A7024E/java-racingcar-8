@@ -8,13 +8,13 @@ public class Racing {
     private final Cars cars;
     private final RacingCount racingCount;
 
-    public Racing(Cars cars, RacingCount racingCount) {
-        this.cars = cars;
-        this.racingCount = racingCount;
+    public Racing(List<String> cars, int tryCount) {
+        this.cars = Cars.fromCarNames(cars);
+        this.racingCount = RacingCount.from(tryCount);
     }
 
-    public static Racing of(Cars cars, RacingCount racingCount) {
-        return new Racing(cars, racingCount);
+    public static Racing of(List<String> carNames, int tryCount) {
+        return new Racing(carNames, tryCount);
     }
 
     public void raceOnce() {

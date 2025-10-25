@@ -14,6 +14,7 @@ import racingcar.view.OutputView;
 public class RacingController {
     private final InputView inputView;
     private final OutputView outputView;
+    private Racing racing;
 
     public RacingController() {
         this.inputView = new InputView();
@@ -21,42 +22,42 @@ public class RacingController {
     }
 
     public void start() {
-        Cars cars = readyCars();
-
-        int count = inputRacingCount();
-        RacingCount racingCount = RacingCount.from(count);
-
-        Racing racing = Racing.of(cars, racingCount);
-
-        runRacingGame(racing);
-        displayWinners(racing);
+        prepareRace();
+        runRacingGame();
+        displayWinners();
     }
 
-    private void displayWinners(Racing racing) {
+    private void prepareRace() {
+        List<String> cars = readyCars();
+        int count = inputRacingCount();
+        racing = Racing.of(cars,count);
+    }
+
+    private void displayWinners() {
         List<String> winners = racing.findWinners();
         outputView.printWinner(winners);
     }
 
-    private void runRacingGame(Racing racing) {
+    private void runRacingGame() {
         outputView.printRacingResultMessage();
         while (racing.canRace()) {
-            racingAround(racing);
+            racingAround();
         }
     }
 
-    private void racingAround(Racing racing) {
-        proceedOneRound(racing);
-        List<String> racingResultDtos = oneRoundResult(racing);
+    private void racingAround() {
+        proceedOneRound();
+        List<String> racingResultDtos = oneRoundResult();
         outputView.printRacingResult(racingResultDtos);
     }
 
-    private static List<String> oneRoundResult(Racing racing) {
+    private List<String> oneRoundResult() {
         List<CarResultDto> carResultDtos = racing.racingResult();
         List<String> racingResult = mapToResultStrings(carResultDtos);
         return racingResult;
     }
 
-    private static void proceedOneRound(Racing racing) {
+    private void proceedOneRound() {
         racing.raceOnce();
         racing.decrementRacingCount();
     }
@@ -67,10 +68,9 @@ public class RacingController {
                 .toList();
     }
 
-    private Cars readyCars() {
+    private List<String> readyCars() {
         outputView.printInputCarNames();
-        List<String> inputs = inputView.inputCarNames();
-        return Cars.fromCarNames(inputs);
+        return inputView.inputCarNames();
     }
 
     private int inputRacingCount() {
