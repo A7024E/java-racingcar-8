@@ -16,7 +16,7 @@ public class CarsValidation {
     private static void validateCars(List<Car> cars) {
         Set<Car> nonDuplicateCars = new HashSet<>(cars);
         if (isDupulicateCars(cars, nonDuplicateCars)) {
-            throw new IllegalArgumentException("자동차 이름은 중복이 될 수 없습니다");
+            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_CAR_NAME.message());
         }
     }
 
