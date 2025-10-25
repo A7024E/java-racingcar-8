@@ -21,10 +21,14 @@ public class Car {
     }
 
     public void move() {
-        int randomNumber = generateRandomNumber();
-        if (randomNumber >= 4) {
+        int randomNumber = randomNumberStrategy.generateNumber();
+        if (isMovable(randomNumber)) {
             moveForward();
         }
+    }
+
+    private static boolean isMovable(int randomNumber) {
+        return randomNumber >= 4;
     }
 
     public void addWinner(List<String> winners) {
@@ -41,10 +45,6 @@ public class Car {
 
     private void moveForward() {
         position.forward();
-    }
-
-    private int generateRandomNumber() {
-        return randomNumberStrategy.generateNumber();
     }
 
     public CarResultDto toCarResultDto() {
