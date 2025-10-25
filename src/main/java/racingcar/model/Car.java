@@ -7,6 +7,8 @@ import racingcar.utils.RandomNumberStrategy;
 
 public class Car {
 
+    private static final int MOVABLE_THRESHOLD = 4;
+
     private final CarName name;
     private final Position position;
     private final RandomNumberStrategy randomNumberStrategy;
@@ -29,7 +31,7 @@ public class Car {
     }
 
     private static boolean isMovable(int randomNumber) {
-        return randomNumber >= 4;
+        return randomNumber >= MOVABLE_THRESHOLD;
     }
 
     private void moveForward() {
