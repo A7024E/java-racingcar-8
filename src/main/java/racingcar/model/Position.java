@@ -6,11 +6,18 @@ public class Position {
     public int position;
 
     private Position(int position) {
+        validate(position);
         this.position = position;
     }
 
     public static Position from(int position) {
         return new Position(position);
+    }
+
+    public void validate(int position){
+        if(position < 0){
+            throw new IllegalArgumentException("포지션은 음수가 될 수 없습니다 ");
+        }
     }
 
     public void forward() {
