@@ -6,6 +6,7 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -44,4 +45,16 @@ class ConverterTest {
         assertThatCode(() -> Converter.toInt(tryCount))
                 .doesNotThrowAnyException();
     }
+
+    @DisplayName("연속된 구분자를 입력 경우 예외를 발생시킨다")
+    @Test
+    void shouldThrowExceptionWhenContinuousDelimiter(){
+        //given
+        String carNames = "pobi,,,woni,,,jun";
+        String[] splitCarNames = carNames.split(",");
+        // when //then
+        assertThatThrownBy(() -> Converter.toList(splitCarNames))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
